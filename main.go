@@ -42,11 +42,11 @@ func main() {
 			_, err = os.Stat(".gitignore")
 			if errors.Is(err, os.ErrNotExist) {
 				file, err := os.Create(".gitignore")
-				defer file.Close()
 				if err != nil {
-					fmt.Println(err)
 					return err
 				}
+				defer file.Close()
+
 				file.Write(byteArray)
 				fmt.Println(".gitignore has been generated->", tools)
 			} else {
